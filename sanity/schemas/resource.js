@@ -50,7 +50,7 @@ export default {
     {
       title: 'ISBN',
       name: 'isbn',
-      type: 'number',
+      type: 'string',
     },
     {
       title: 'Image',
