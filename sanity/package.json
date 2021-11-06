@@ -1,0 +1,33 @@
+{
+  "name": "cgresources",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "package.json",
+  "author": "Adam Mescher <admescher@gmail.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "sanity start",
+    "build": "sanity build"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/base": "^2.21.9",
+    "@sanity/cli": "^2.21.7",
+    "@sanity/core": "^2.21.8",
+    "@sanity/default-layout": "^2.21.9",
+    "@sanity/default-login": "^2.21.9",
+    "@sanity/desk-tool": "^2.21.9",
+    "@sanity/vision": "^2.21.9",
+    "netlify-cli": "^6.10.2",
+    "prop-types": "^15.7",
+    "react": "^17.0",
+    "react-dom": "^17.0",
+    "react-icons": "^4.3.1",
+    "sanity-plugin-autocomplete-tags": "^1.0.1",
+    "sanity-plugin-markdown": "^2.0.3",
+    "styled-components": "^5.2.0"
+  }
+}
