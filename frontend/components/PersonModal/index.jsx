@@ -1,6 +1,7 @@
 import {
   Center,
   Heading,
+  Link,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -23,19 +24,20 @@ const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
           <Heading textAlign='center'>
             {person.firstName + ' ' + person.lastName}
           </Heading>
-          <Center>
+          <Center mt={3}>
             <img
               style={{ borderRadius: '50%' }}
               src={urlFor(person.photo).width(150).url()}
             />
           </Center>
-          <Text textAlign='leftß'>Birthday: {person.birthday}</Text>
+          <Text mt={3} textAlign='left'>Birthday: {person.birthday}</Text>
           <Text>
-            Phone:{' '}<a href={`tel:${person.phone}`}>{person.phone}</a>
+            Phone:{' '}
+            <Link href={`tel:${person.phone}`} isExternal>
+              {person.phone}
+            </Link>
           </Text>
-          <Text>
-            Email:{' '}<a href={`mailto:${person.email}`}>{person.email}</a>
-          </Text>
+          <Text>Email: {' ' + person.email}</Text>
         </ModalBody>
       </ModalContent>
     </Modal>
