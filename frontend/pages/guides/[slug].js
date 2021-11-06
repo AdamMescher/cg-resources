@@ -34,7 +34,7 @@ const GuideSlugPage = ({ esv, sanity }) => {
           }>{`${sanity.guide.sermonDate}: ${sanity.guide.sermonTitle} | ${sanity.guide.passage}`}</Heading>
         <Box>
           <Heading>Passage</Heading>
-          {/* <PassageText html={esv.passages[0]} /> */}
+          <PassageText html={esv.passages[0]} />
           <Heading pt={headingMarginTop} as='h3' size='lg'>
             Sermon Notes
           </Heading>
@@ -120,31 +120,30 @@ export async function getServerSideProps({ query }) {
       },
     },
   });
-  console.log({ data });
-  // const getPassageText = async () => {
-  //   const passageText = await fetch(
-  //     `https://api.esv.org/v3/passage/html?q=${data.allGuide[0].passage.replaceAll(
-  //       ' ',
-  //       ''
-  //     )}&include-footnotes=false&include-audio-link=false`,
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         Authorization: 'Token 710392c94e40886957768a5e10ba506a48d4f138',
-  //         'Content-Type': 'application/json',
-  //       },
-  //     }
-  //   )
-  //     .then((response) => response.text())
-  //     .then((data) => JSON.parse(data))
-  //     .catch((err) => console.error(err));
-  //   return passageText;
-  // };
-  // const esv = await getPassageText();
+  const getPassageText = async () => {
+    const passageText = await fetch(
+      `https://api.esv.org/v3/passage/html?q=${data.allGuide[0].passage.replaceAll(
+        ' ',
+        ''
+      )}&include-footnotes=false&include-audio-link=false`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: 'Token 710392c94e40886957768a5e10ba506a48d4f138',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+      .then((response) => response.text())
+      .then((data) => JSON.parse(data))
+      .catch((err) => console.error(err));
+    return passageText;
+  };
+  const esv = await getPassageText();
 
   return {
     props: {
-      // esv,
+      esv,
       sanity: {
         guide: data.allGuide[0],
       },
