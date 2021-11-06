@@ -144,7 +144,7 @@ export async function getServerSideProps({ query }) {
 
   return {
     props: {
-      esv,
+      // esv,
       sanity: {
         guide: data.allGuide[0],
       },
