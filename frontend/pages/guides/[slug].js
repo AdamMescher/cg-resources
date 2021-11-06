@@ -34,7 +34,7 @@ const GuideSlugPage = ({ esv, sanity }) => {
           }>{`${sanity.guide.sermonDate}: ${sanity.guide.sermonTitle} | ${sanity.guide.passage}`}</Heading>
         <Box>
           <Heading>Passage</Heading>
-          <PassageText html={esv.passages[0]} />
+          {/* <PassageText html={esv.passages[0]} /> */}
           <Heading pt={headingMarginTop} as='h3' size='lg'>
             Sermon Notes
           </Heading>
