@@ -58,13 +58,11 @@ const ContactsPage = ({ sanity }) => {
                 </Tr>
               ))}
             </Thead>
-            <Tbody {...getTableBodyProps()}>
+            <TBody {...getTableBodyProps()}>
               {rows.map((row) => {
                 prepareRow(row);
                 return (
-                  <Tr
-                    _hover={{ backgroundColor: 'gray.500', cursor: 'pointer' }}
-                    {...row.getRowProps()}
+                  <Tr {...row.getRowProps()}>
                     {row.cells.map((cell) => {
                       return (
                         <Td {...cell.getCellProps()}>{cell.render('Cell')}</Td>
@@ -73,7 +71,7 @@ const ContactsPage = ({ sanity }) => {
                   </Tr>
                 );
               })}
-            </Tbody>
+            </TBody>
           </Table>
         </Box>
       </Box>
