@@ -1,0 +1,2 @@
+[constext.productionbuild]
+  base="./frontend"
