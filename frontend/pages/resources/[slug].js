@@ -1,25 +1,12 @@
 import { useRouter } from 'next/router';
 import { gql } from '@apollo/client';
-import sanityClient from '@sanity/client';
-import imageUrlBuilder from '@sanity/image-url';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Badge, Box, Center, Heading, Link, Text } from '@chakra-ui/react';
 import Nav from '../../components/Nav';
 import ResourceBadge from '../../components/ResourceBadge';
 import client from '../../apollo-client';
-
-const sanity = sanityClient({
-  projectId: 's6hca5j1',
-  dataset: 'production',
-  apiVersion: '2021-11-05',
-  useCdn: true,
-});
-const builder = imageUrlBuilder(sanity);
-
-function urlFor(source) {
-  return builder.image(source);
-}
+import urlFor from '../../utils/urlFor';
 
 const ResourceSlugPage = ({ resource }) => {
   return (
