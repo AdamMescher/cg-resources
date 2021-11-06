@@ -33,9 +33,6 @@ const ContactsPage = ({ sanity }) => {
     },
   ]);
   const tableData = React.useMemo(() => sanity.people.map((person) => person));
-  React.useEffect(() => {
-    console.log({ person });
-  });
   return (
     <Box>
       <Nav />

@@ -14,7 +14,6 @@ import {
 import urlFor from '../../utils/urlFor';
 
 const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
-  console.log({ personInModal: person });
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -30,14 +29,16 @@ const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
               src={urlFor(person.photo).width(150).url()}
             />
           </Center>
-          <Text mt={3} textAlign='left'>Birthday: {person.birthday}</Text>
+          <Text mt={3} textAlign='left'>
+            Birthday: {person.birthday}
+          </Text>
           <Text>
             Phone:{' '}
             <Link href={`tel:${person.phone}`} isExternal>
               {person.phone}
             </Link>
           </Text>
-          <Text>Email: {' ' + person.email}</Text>
+          <Text>Email: {'conso ' + person.email}</Text>
         </ModalBody>
       </ModalContent>
     </Modal>

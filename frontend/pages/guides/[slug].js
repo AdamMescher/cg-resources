@@ -23,10 +23,6 @@ const bulletIconColor = 'gray.800';
 const headingMarginTop = '20px;';
 
 const GuideSlugPage = ({ esv, sanity }) => {
-  React.useEffect(() => {
-    const value = window.localStorage;
-    console.log(value);
-  });
   return (
     <Box>
       <Nav />
