@@ -32,6 +32,12 @@ const ResourceSlugPage = ({ resource }) => {
         <Center mt={2}>
           <ResourceBadge type={resource.type} />
         </Center>
+        <Text textAlign='center'>
+          Added on: {resource._createdAt.substr(0, 10)}
+        </Text>
+        <Text textAlign='center'>
+          Last updated: {resource._updatedAt.substr(0, 10)}
+        </Text>
         <Center mt={4}>
           <img
             style={{ borderRadius: '8px' }}
@@ -79,6 +85,8 @@ export async function getServerSideProps({ query }) {
     query GET_RESOURCE_BY_SLUG($where: ResourceFilter) {
       allResource(where: $where) {
         _id
+        _updatedAt
+        _createdAt
         title
         slug {
           current
