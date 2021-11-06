@@ -58,7 +58,7 @@ const ContactsPage = ({ sanity }) => {
                 </Tr>
               ))}
             </Thead>
-            <TBody {...getTableBodyProps()}>
+            <Tbody {...getTableBodyProps()}>
               {rows.map((row) => {
                 prepareRow(row);
                 return (
@@ -71,7 +71,7 @@ const ContactsPage = ({ sanity }) => {
                   </Tr>
                 );
               })}
-            </TBody>
+            </Tbody>
           </Table>
         </Box>
       </Box>
