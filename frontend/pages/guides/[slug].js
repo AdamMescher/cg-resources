@@ -120,6 +120,7 @@ export async function getServerSideProps({ query }) {
       },
     },
   });
+  console.log({ data });
   const getPassageText = async () => {
     const passageText = await fetch(
       `https://api.esv.org/v3/passage/html?q=${data.allGuide[0].passage.replaceAll(
