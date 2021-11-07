@@ -83,7 +83,7 @@ const GuideSlugPage = ({ esv, sanity }) => {
   );
 };
 
-export async function getServerSideProps({ query }) {
+export async function getStaticProps({ query }) {
   const { data } = await client.query({
     query: gql`
       query RootQuery($allGuideWhere: GuideFilter) {
@@ -121,7 +121,6 @@ export async function getServerSideProps({ query }) {
     },
   });
   const getPassageText = async () => {
-    console.log({ passage: data.allGuide[0].passage });
     const passageText = await fetch(
       `https://api.esv.org/v3/passage/html?q=${data.allGuide[0].passage.replaceAll(
         ' ',
