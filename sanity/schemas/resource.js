@@ -28,10 +28,11 @@ export default {
       type: 'string',
       options: {
         list: [
+          { title: 'article', value: 'article' },
           { title: 'book', value: 'book' },
           { title: 'podcast', value: 'podcast' },
           { title: 'sermon', value: 'sermon' },
-          { title: 'article', value: 'article' },
+          { title: 'study', value: 'study'},
           { title: 'song', value: 'song' },
           { title: 'video', value: 'video' },
         ],
