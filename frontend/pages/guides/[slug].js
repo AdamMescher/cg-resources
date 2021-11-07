@@ -124,6 +124,20 @@ export async function getServerSideProps({ query }) {
     console.log({ error });
   }
   const getPassageText = async () => {
+    if (!String.prototype.replaceAll) {
+      String.prototype.replaceAll = function (str, newStr) {
+        // If a regex pattern
+        if (
+          Object.prototype.toString.call(str).toLowerCase() ===
+          '[object regexp]'
+        ) {
+          return this.replace(str, newStr);
+        }
+
+        // If a string
+        return this.replace(new RegExp(str, 'g'), newStr);
+      };
+    }
     const passageText = await fetch(
       `https://api.esv.org/v3/passage/html?q=${data.allGuide[0].passage.replaceAll(
         ' ',
