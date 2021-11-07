@@ -5,12 +5,14 @@ import {
   Center,
   Text,
   Heading,
+  HStack,
   UnorderedList,
   ListItem,
   Link,
 } from '@chakra-ui/react';
 import Nav from '../components/Nav';
 import ResourceBadge from '../components/ResourceBadge';
+import SermonSeriesTag from '../components/SermonSeriesTag';
 import client from '../apollo-client';
 
 const IndexPage = ({ sanity }) => {
@@ -27,8 +29,9 @@ const IndexPage = ({ sanity }) => {
         <UnorderedList>
           {sanity.guides.map((guide) => (
             <ListItem key={guide._id}>
-              <Link
+              <Link mr={2}
                 href={`/guides/${guide.slug.current}`}>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Link>
+              <SermonSeriesTag series={guide.series} />
             </ListItem>
           ))}
         </UnorderedList>
@@ -36,9 +39,12 @@ const IndexPage = ({ sanity }) => {
         <UnorderedList>
           {sanity.resources.map((resource) => (
             <ListItem key={resource._id}>
-              <Link href={`/resources/${resource.slug.current}`}>
-                {resource.title} <ResourceBadge type={resource.type} />
-              </Link>
+              <HStack>
+                <Link href={`/resources/${resource.slug.current}`}>
+                  <Text>{resource.title}</Text>
+                </Link>
+                <ResourceBadge type={resource.type} />
+              </HStack>
             </ListItem>
           ))}
         </UnorderedList>
@@ -60,6 +66,7 @@ export async function getServerSideProps() {
           sermonTitle
           passage
           sermonDate
+          series
           cgDate
           slug {
             current

@@ -1,4 +1,4 @@
-import { Badge } from '@chakra-ui/react';
+import { Badge, Flex } from '@chakra-ui/react';
 
 const ResourceBadge = ({ type }) => {
   let colorScheme;
@@ -10,11 +10,13 @@ const ResourceBadge = ({ type }) => {
     colorScheme = 'purple';
   } else if (type === 'sermon') {
     colorScheme = 'orange';
+  } else if (type === 'study') {
+    colorScheme = 'green';
   } else if (type === 'video') {
     colorScheme = 'red';
   }
   return (
-    <Badge variant='solid' colorScheme={colorScheme}>
+    <Badge bottom='50%' variant='solid' colorScheme={colorScheme}>
       {type}
     </Badge>
   );

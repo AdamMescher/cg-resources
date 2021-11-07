@@ -3,6 +3,7 @@ import { gql } from '@apollo/client';
 import {
   Box,
   Heading,
+  Link,
   ListIcon,
   ListItem,
   OrderedList,
@@ -73,10 +74,17 @@ const GuideSlugPage = ({ esv, sanity }) => {
             Message Link
           </Heading>
           <Text>
-            <a href={sanity.guide.message} style={{ color: '#AA934F' }}>
+            <Link href={sanity.guide.message} style={{ color: '#AA934F' }}>
               {sanity.guide.sermonTitle}
-            </a>
+            </Link>
           </Text>
+          <Heading>Files</Heading>
+          <Link isExternal href={`${sanity.guide.mikeGuide.asset.url}`}>
+            Mike's Guide
+          </Link>
+          <Link isExternal href={`${sanity.guide.cgGuide.asset.url}`}>
+            Prayer Guide
+          </Link>
         </Box>
       </Box>
     </Box>
@@ -100,11 +108,13 @@ export async function getServerSideProps({ query }) {
           mikeGuide {
             asset {
               _id
+              url
             }
           }
           cgGuide {
             asset {
               _id
+              url
             }
           }
         }
