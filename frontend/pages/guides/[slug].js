@@ -84,7 +84,7 @@ const GuideSlugPage = ({ esv, sanity }) => {
 };
 
 export async function getServerSideProps({ query }) {
-  const { data } = await client.query({
+  const { data, error } = await client.query({
     query: gql`
       query RootQuery($allGuideWhere: GuideFilter) {
         allGuide(where: $allGuideWhere) {
@@ -120,25 +120,28 @@ export async function getServerSideProps({ query }) {
       },
     },
   });
-  const getPassageText = async () => {
-  const passageText = await fetch(
-    `https://api.esv.org/v3/passage/html?q=${data.allGuide[0].passage.replaceAll(
-      ' ',
-      ''
-    )}&include-footnotes=false&include-audio-link=false`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: 'Token 710392c94e40886957768a5e10ba506a48d4f138',
-        'Content-Type': 'application/json',
-      },
-    }
-  )
-    .then((response) => response.text())
-    .then((data) => JSON.parse(data))
-    .catch((err) => console.error(err));
-  return passageText;
+  if (error) {
+    console.log({ error });
   }
+  const getPassageText = async () => {
+    const passageText = await fetch(
+      `https://api.esv.org/v3/passage/html?q=${data.allGuide[0].passage.replaceAll(
+        ' ',
+        ''
+      )}&include-footnotes=false&include-audio-link=false`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: 'Token 710392c94e40886957768a5e10ba506a48d4f138',
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+      .then((response) => response.text())
+      .then((data) => JSON.parse(data))
+      .catch((err) => console.error(err));
+    return passageText;
+  };
   const esv = await getPassageText();
 
   return {
