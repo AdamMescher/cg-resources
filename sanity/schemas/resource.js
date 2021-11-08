@@ -24,19 +24,8 @@ export default {
     },
     {
       title: 'Resource Type',
-      name: 'type',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'article', value: 'article' },
-          { title: 'book', value: 'book' },
-          { title: 'podcast', value: 'podcast' },
-          { title: 'sermon', value: 'sermon' },
-          { title: 'study', value: 'study'},
-          { title: 'song', value: 'song' },
-          { title: 'video', value: 'video' },
-        ],
-      },
+      name: 'tags',
+      type: 'tags',
     },
     {
       title: 'Reource Notes',

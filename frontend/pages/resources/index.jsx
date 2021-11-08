@@ -7,6 +7,7 @@ import {
   SimpleGrid,
   Text,
 } from '@chakra-ui/react';
+import Select from 'react-select';
 import Nav from '../../components/Nav';
 import ResourceBadge from '../../components/ResourceBadge';
 import client from '../../apollo-client';
@@ -20,10 +21,16 @@ const ResourcesPage = ({ resources }) => {
         <Center mt={3}>
           <Heading>Resources</Heading>
         </Center>
+        <Center width={700} backgroundColor='teal'>
+          <Select
+            styles={() => ({ width: '500px', backgroundColor: 'red' })}
+            isClearable
+          />
+        </Center>
         <Center>
           <SimpleGrid pt={5} columns={4} spacing={10}>
             {resources.map((resource) => (
-              <LinkOverlay
+              <Box
                 width={400}
                 height={300}
                 borderWidth={2}
@@ -44,7 +51,7 @@ const ResourcesPage = ({ resources }) => {
                 <Center px={3} mt={3} pb={2}>
                   <ResourceBadge type={resource.type} />
                 </Center>
-              </LinkOverlay>
+              </Box>
             ))}
           </SimpleGrid>
         </Center>

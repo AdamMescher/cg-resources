@@ -1,23 +1,23 @@
 import { Badge, Flex } from '@chakra-ui/react';
 
-const ResourceBadge = ({ type }) => {
+const ResourceBadge = ({ tag }) => {
   let colorScheme;
-  if (type === 'article') {
+  if (tag === 'article') {
     colorScheme = 'cyan';
-  } else if (type === 'book') {
+  } else if (tag === 'book') {
     colorScheme = 'blue';
-  } else if (type === 'podcast') {
+  } else if (tag === 'podcast') {
     colorScheme = 'purple';
-  } else if (type === 'sermon') {
+  } else if (tag === 'sermon') {
     colorScheme = 'orange';
-  } else if (type === 'study') {
+  } else if (tag === 'study') {
     colorScheme = 'green';
-  } else if (type === 'video') {
+  } else if (tag === 'video') {
     colorScheme = 'red';
   }
   return (
     <Badge bottom='50%' variant='solid' colorScheme={colorScheme}>
-      {type}
+      {tag}
     </Badge>
   );
 };

@@ -48,7 +48,11 @@ const IndexPage = ({ sanity }) => {
                 <Link href={`/resources/${resource.slug.current}`}>
                   <Text>{resource.title}</Text>
                 </Link>
-                <ResourceBadge type={resource.type} />
+                {resource.tags
+                  ? resource.tags.map(({ label, value }) => (
+                      <ResourceBadge tag={label} />
+                    ))
+                  : null}
               </HStack>
             </ListItem>
           ))}
