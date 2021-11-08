@@ -78,7 +78,10 @@ export async function getServerSideProps({ query }) {
         slug {
           current
         }
-        type
+        tag {
+          label
+          value
+        }
         notes
         url
         isbn
