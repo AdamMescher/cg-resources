@@ -1,19 +1,22 @@
-import { Box, HStack, Icon, Text } from '@chakra-ui/react';
+import { Box, HStack, Icon, Link, Text } from '@chakra-ui/react';
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { MdCake } from 'react-icons/md';
 import personModal from '../PersonModal';
+import formatPhoneNumber from '../../utils/formatPhoneNumber';
 
 const ContactsList = ({ people }) => {
   return people.map((person) => (
     <Box key={person._id} mt={3}>
-      <Text>{`${person.firstName} ${person.lastName}`}</Text>
+      <Text fontSize={24}>{`${person.firstName} ${person.lastName}`}</Text>
       <HStack>
         <PhoneIcon />
-        <Text>{person.phone}</Text>
+        <Link href={`tel:${person.phone}`}>
+          {formatPhoneNumber(person.phone)}
+        </Link>
       </HStack>
       <HStack>
         <EmailIcon />
-        <Text>{person.email}</Text>
+        <Link href={`mailto:${person.email}`}>{person.email}</Link>
       </HStack>
       <HStack>
         <Icon as={MdCake} />

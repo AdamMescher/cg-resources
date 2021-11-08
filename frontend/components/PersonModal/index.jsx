@@ -39,7 +39,9 @@ const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
               {formatPhoneNumber(person.phone)}
             </Link>
           </Text>
-          <Text>Email: {person.email}</Text>
+          <Text>
+            Email: <Link href={`mailto:${person.email}`}>{person.email}</Link>
+          </Text>
         </ModalBody>
       </ModalContent>
     </Modal>
