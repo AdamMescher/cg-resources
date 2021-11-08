@@ -49,7 +49,11 @@ const ResourcesPage = ({ resources }) => {
                   {resource.title}
                 </Heading>
                 <Center px={3} mt={3} pb={2}>
-                  <ResourceBadge type={resource.type} />
+                  {resource.tags
+                    ? resource.tags.map(({ label, value }) => (
+                        <ResourceBadge tag={label} />
+                      ))
+                    : null}
                 </Center>
               </Box>
             ))}
@@ -70,7 +74,10 @@ export async function getServerSideProps() {
           slug {
             current
           }
-          type
+          tags {
+            label
+            value
+          }
           url
           notes
           image {
