@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import urlFor from '../../utils/urlFor';
+import formatPhoneNumber from '../../utils/formatPhoneNumber';
 
 const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
   return (
@@ -35,10 +36,10 @@ const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
           <Text>
             Phone:{' '}
             <Link href={`tel:${person.phone}`} isExternal>
-              {person.phone}
+              {formatPhoneNumber(person.phone)}
             </Link>
           </Text>
-          <Text>Email: {'conso ' + person.email}</Text>
+          <Text>Email: {person.email}</Text>
         </ModalBody>
       </ModalContent>
     </Modal>
