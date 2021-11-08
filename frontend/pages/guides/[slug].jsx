@@ -2,6 +2,7 @@ import * as React from 'react';
 import { gql } from '@apollo/client';
 import {
   Box,
+  Center,
   Heading,
   Link,
   ListIcon,
@@ -12,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 import Nav from '../../components/Nav';
 import PassageText from '../../components/PassageText';
+import SermonSeriesTag from '../../components/SermonSeriesTag';
 import { IoMdRadioButtonOn } from 'react-icons/io';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -33,6 +35,13 @@ const GuideSlugPage = ({ esv, sanity }) => {
           mt={
             2
           }>{`${sanity.guide.sermonDate}: ${sanity.guide.sermonTitle} | ${sanity.guide.passage}`}</Heading>
+        {sanity.guide.tags ? (
+          <Center mt={2}>
+            {sanity.guide.tags.map(({ label, value }) => (
+              <SermonSeriesTag tag={label} />
+            ))}
+          </Center>
+        ) : null}
         <Box>
           <Heading>Passage</Heading>
           <PassageText html={esv.passages[0]} />
@@ -105,6 +114,10 @@ export async function getServerSideProps({ query }) {
           questions
           announcements
           message
+          tags {
+            label
+            value
+          }
           mikeGuide {
             asset {
               _id
