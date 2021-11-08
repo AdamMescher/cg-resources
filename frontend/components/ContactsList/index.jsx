@@ -18,19 +18,19 @@ const ContactsList = ({ people }) => {
       <Text
         fontSize={24}
         textAlign='center'>{`${person.firstName} ${person.lastName}`}</Text>
-      <HStack ml={10}>
+      <HStack mt={2} ml={10}>
         <PhoneIcon />
         <Link href={`tel:${person.phone}`} isExternal>
           {formatPhoneNumber(person.phone)}
         </Link>
       </HStack>
-      <HStack ml={10}>
+      <HStack mt={2} ml={10}>
         <EmailIcon />
         <Link href={`mailto:${person.email}`} isExternal>
           {person.email}
         </Link>
       </HStack>
-      <HStack ml={10}>
+      <HStack mt={2} ml={10}>
         <Icon as={MdCake} />
         <Text>{person.birthday}</Text>
       </HStack>
