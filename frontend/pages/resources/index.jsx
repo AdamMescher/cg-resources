@@ -45,7 +45,7 @@ const ResourcesPage = ({ resources }) => {
                       src={urlFor(resource.image).height(75).url()}
                     />
                   </Center>
-                  <LinkOverlay href={resource.url}>
+                  <LinkOverlay href={resource.url} isExternal>
                     <Text
                       px={3}
                       mt={3}
