@@ -3,7 +3,6 @@ import { Box } from '@chakra-ui/react';
 import Copyright from '../Copyright';
 
 const PassageText = ({ html }) => {
-  const text = parse(html);
   return (
     <Box>
       <div>

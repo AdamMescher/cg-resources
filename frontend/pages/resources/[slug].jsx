@@ -17,7 +17,11 @@ const ResourceSlugPage = ({ resource }) => {
           {`${resource.title}`}
         </Heading>
         <Center mt={2}>
-          <ResourceBadge type={resource.type} />
+          {resource.tags
+            ? resource.tags.map(({ label, value }) => (
+                <ResourceBadge key={resource._id} tag={label} />
+              ))
+            : null}
         </Center>
         <Text textAlign='center'>
           Added on: {resource._createdAt.substr(0, 10)}
@@ -78,7 +82,7 @@ export async function getServerSideProps({ query }) {
         slug {
           current
         }
-        tag {
+        tags {
           label
           value
         }

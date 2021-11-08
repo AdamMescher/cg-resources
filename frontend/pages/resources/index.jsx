@@ -51,7 +51,7 @@ const ResourcesPage = ({ resources }) => {
                 <Center px={3} mt={3} pb={2}>
                   {resource.tags
                     ? resource.tags.map(({ label, value }) => (
-                        <ResourceBadge tag={label} />
+                        <ResourceBadge key={resource._id} tag={label} />
                       ))
                     : null}
                 </Center>
