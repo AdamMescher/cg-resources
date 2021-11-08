@@ -24,7 +24,7 @@ const IndexPage = ({ sanity }) => {
         <Heading as='h2' size='2xl' textAlign='center' pt={5}>
           Community Group Guides and Resources
         </Heading>
-        <Heading as='h3' size='xl'>
+        <Heading as='h3' size='xl' mt={6}>
           Guides
         </Heading>
         <List>
@@ -46,7 +46,7 @@ const IndexPage = ({ sanity }) => {
             </ListItem>
           ))}
         </List>
-        <Heading>Resources</Heading>
+        <Heading mt={6}>Resources</Heading>
         <List>
           {sanity.resources.map((resource) => (
             <ListItem key={resource._id} mt={1}>
