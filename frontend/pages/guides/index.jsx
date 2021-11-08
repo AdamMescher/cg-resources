@@ -7,7 +7,7 @@ import {
   Link,
   ListItem,
   Text,
-  UnorderedList,
+  List,
 } from '@chakra-ui/react';
 import Nav from '../../components/Nav';
 import SermonSeriesTag from '../../components/SermonSeriesTag';
@@ -22,20 +22,25 @@ const GuidesPage = ({ guides }) => {
           <Heading mt={3}>Guides</Heading>
         </Center>
         <Box>
-          <UnorderedList listStyle='none'>
+          <List listStyle='none'>
             {guides.map((guide) => (
               <ListItem>
-                <Link mr={2} href={`/guides/${guide.slug.current}`}>
-                  {`${guide.sermonDate}: ${guide.sermonTitle}`}
-                </Link>
-                {guide.tags
-                  ? guide.tags.map(({ value, label }) => (
-                      <SermonSeriesTag tag={label} />
-                    ))
-                  : null}
+                <HStack>
+                  {guide.tags
+                    ? guide.tags.map(({ value, label }) => (
+                        <SermonSeriesTag tag={label} />
+                      ))
+                    : null}
+                  <Link mr={2} href={`/guides/${guide.slug.current}`}>
+                    <Text
+                      noOfLines={
+                        1
+                      }>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Text>
+                  </Link>
+                </HStack>
               </ListItem>
             ))}
-          </UnorderedList>
+          </List>
         </Box>
       </Box>
     </Box>
