@@ -29,9 +29,14 @@ const IndexPage = ({ sanity }) => {
         <UnorderedList>
           {sanity.guides.map((guide) => (
             <ListItem key={guide._id}>
-              <Link mr={2}
+              <Link
+                mr={2}
                 href={`/guides/${guide.slug.current}`}>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Link>
-              <SermonSeriesTag series={guide.series} />
+              {guide.tags
+                ? guide.tags.map(({ value, label }) => (
+                    <SermonSeriesTag tag={label} />
+                  ))
+                : null}
             </ListItem>
           ))}
         </UnorderedList>
@@ -66,7 +71,10 @@ export async function getServerSideProps() {
           sermonTitle
           passage
           sermonDate
-          series
+          tags {
+            label
+            value
+          }
           cgDate
           slug {
             current
@@ -82,9 +90,12 @@ export async function getServerSideProps() {
           slug {
             current
           }
-          type
           notes
           url
+          tags {
+            label
+            value
+          }
           image {
             asset {
               url
