@@ -30,14 +30,19 @@ const IndexPage = ({ sanity }) => {
         <List>
           {sanity.guides.map((guide) => (
             <ListItem mt={2} key={guide._id}>
-              {guide.tags
-                ? guide.tags.map(({ value, label }) => (
-                    <SermonSeriesTag key={guide._id} tag={label} />
-                  ))
-                : null}
-              <Link ml={2} href={`/guides/${guide.slug.current}`}>
-                {`${guide.sermonDate}: ${guide.sermonTitle}`}
-              </Link>
+              <HStack>
+                {guide.tags
+                  ? guide.tags.map(({ value, label }) => (
+                      <SermonSeriesTag key={guide._id} tag={label} />
+                    ))
+                  : null}
+                <Link ml={2} href={`/guides/${guide.slug.current}`}>
+                  <Text
+                    noOfLines={
+                      1
+                    }>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Text>
+                </Link>
+              </HStack>
             </ListItem>
           ))}
         </List>
