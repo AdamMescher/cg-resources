@@ -20,13 +20,15 @@ const ContactsList = ({ people }) => {
         textAlign='center'>{`${person.firstName} ${person.lastName}`}</Text>
       <HStack ml={10}>
         <PhoneIcon />
-        <Link href={`tel:${person.phone}`}>
+        <Link href={`tel:${person.phone}`} isExternal>
           {formatPhoneNumber(person.phone)}
         </Link>
       </HStack>
       <HStack ml={10}>
         <EmailIcon />
-        <Link href={`mailto:${person.email}`}>{person.email}</Link>
+        <Link href={`mailto:${person.email}`} isExternal>
+          {person.email}
+        </Link>
       </HStack>
       <HStack ml={10}>
         <Icon as={MdCake} />
