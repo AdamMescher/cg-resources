@@ -1,5 +1,5 @@
 import { Tag, TagLabel, TagRightIcon } from '@chakra-ui/react';
-import { FaChurch } from 'react-icons/Fa';
+import { FaChurch } from 'react-icons/fa';
 
 const SermonSeriesTag = ({ tag }) => {
   let colorScheme;

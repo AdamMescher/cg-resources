@@ -34,7 +34,7 @@ const IndexPage = ({ sanity }) => {
                 href={`/guides/${guide.slug.current}`}>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Link>
               {guide.tags
                 ? guide.tags.map(({ value, label }) => (
-                    <SermonSeriesTag tag={label} />
+                    <SermonSeriesTag key={guide._id} tag={label} />
                   ))
                 : null}
             </ListItem>
@@ -50,7 +50,7 @@ const IndexPage = ({ sanity }) => {
                 </Link>
                 {resource.tags
                   ? resource.tags.map(({ label, value }) => (
-                      <ResourceBadge tag={label} />
+                      <ResourceBadge key={resource._id} tag={label} />
                     ))
                   : null}
               </HStack>
