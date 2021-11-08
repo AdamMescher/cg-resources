@@ -10,28 +10,19 @@ import {
 } from '@chakra-ui/react';
 import { useTable } from 'react-table';
 import ContactsTable from '../components/ContactsTable';
+import ContactsList from '../components/ContactsList';
 import PersonModal from '../components/PersonModal';
 import Nav from '../components/Nav';
 import client from '../apollo-client';
 import formatPhoneNumber from '../utils/formatPhoneNumber';
 
 const ContactsPage = ({ sanity }) => {
-  const rawTableData = sanity.people.map((person) => {
+  const modifiedTableData = sanity.people.map((person) => {
     const number = person.phone;
     const newPerson = { ...person, phone: formatPhoneNumber(number) };
-    console.log({ newPerson });
     return newPerson;
   });
-  console.log(rawTableData);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [person, setPerson] = React.useState(null);
-  const breakpoint = useBreakpointValue({
-    xl: 'xl',
-    lg: 'lg',
-    md: 'md',
-    sm: 'sm',
-  });
-  const columns = React.useMemo(() => [
+  const columnData = [
     {
       Header: 'First Name',
       accessor: 'firstName',
@@ -52,8 +43,17 @@ const ContactsPage = ({ sanity }) => {
       Header: 'Birthday',
       accessor: 'birthday',
     },
-  ]);
-  const tableData = React.useMemo(() => rawTableData);
+  ];
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [person, setPerson] = React.useState(null);
+  const breakpoint = useBreakpointValue({
+    xl: 'xl',
+    lg: 'lg',
+    md: 'md',
+    sm: 'sm',
+  });
+  const columns = React.useMemo(() => columnData);
+  const tableData = React.useMemo(() => modifiedTableData);
   return (
     <Box>
       <Nav />
@@ -72,7 +72,7 @@ const ContactsPage = ({ sanity }) => {
             onOpen={onOpen}
           />
         ) : (
-          <div>mobile varient</div>
+          <ContactsList people={sanity.people} />
         )}
         {person ? (
           <PersonModal
