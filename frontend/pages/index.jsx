@@ -7,6 +7,7 @@ import {
   Heading,
   HStack,
   UnorderedList,
+  List,
   ListItem,
   Link,
 } from '@chakra-ui/react';
@@ -26,37 +27,37 @@ const IndexPage = ({ sanity }) => {
         <Heading as='h3' size='xl'>
           Guides
         </Heading>
-        <UnorderedList>
+        <List>
           {sanity.guides.map((guide) => (
-            <ListItem mt={1} key={guide._id}>
-              <Link
-                mr={2}
-                href={`/guides/${guide.slug.current}`}>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Link>
+            <ListItem mt={2} key={guide._id}>
               {guide.tags
                 ? guide.tags.map(({ value, label }) => (
                     <SermonSeriesTag key={guide._id} tag={label} />
                   ))
                 : null}
+              <Link ml={2} href={`/guides/${guide.slug.current}`}>
+                {`${guide.sermonDate}: ${guide.sermonTitle}`}
+              </Link>
             </ListItem>
           ))}
-        </UnorderedList>
+        </List>
         <Heading>Resources</Heading>
-        <UnorderedList>
+        <List>
           {sanity.resources.map((resource) => (
-            <ListItem key={resource._id}>
+            <ListItem key={resource._id} mt={1}>
               <HStack>
-                <Link href={`/resources/${resource.slug.current}`}>
-                  <Text>{resource.title}</Text>
-                </Link>
                 {resource.tags
                   ? resource.tags.map(({ label, value }) => (
                       <ResourceBadge key={resource._id} tag={label} />
                     ))
                   : null}
+                <Link href={`/resources/${resource.slug.current}`}>
+                  <Text noOfLines={1}>{resource.title}</Text>
+                </Link>
               </HStack>
             </ListItem>
           ))}
-        </UnorderedList>
+        </List>
       </Box>
     </Box>
   );
