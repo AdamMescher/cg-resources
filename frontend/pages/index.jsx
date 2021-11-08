@@ -28,7 +28,7 @@ const IndexPage = ({ sanity }) => {
         </Heading>
         <UnorderedList>
           {sanity.guides.map((guide) => (
-            <ListItem key={guide._id}>
+            <ListItem mt={1} key={guide._id}>
               <Link
                 mr={2}
                 href={`/guides/${guide.slug.current}`}>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Link>
