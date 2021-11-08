@@ -31,8 +31,13 @@ const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
           </Heading>
           <Center mt={5}>
             <img
-              style={{ borderRadius: '50%' }}
-              src={urlFor(person.photo).width(150).url()}
+              src={urlFor(person.photo).height(250).url()}
+              style={{
+                objectFit: 'cover',
+                borderRadius: '50%',
+                height: 150,
+                width: 150,
+              }}
             />
           </Center>
           <HStack mt={5} px={'25%'}>
