@@ -35,7 +35,7 @@ const GuideSlugPage = ({ esv, sanity }) => {
   return (
     <Box>
       <Nav />
-      <Box px={50}>
+      <Box px={5}>
         <Heading
           textAlign='center'
           mt={
