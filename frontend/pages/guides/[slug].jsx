@@ -38,7 +38,7 @@ const GuideSlugPage = ({ esv, sanity }) => {
       <Box px={5}>
         <Heading textAlign='center' mt={2}>{`${formatDayMonthYear(
           sanity.guide.sermonDate
-        )}: ${sanity.guide.sermonTitle}`}</Heading>
+        )} | ${sanity.guide.sermonTitle}`}</Heading>
         {sanity.guide.tags ? (
           <Center mt={2}>
             {sanity.guide.tags.map(({ label, value }) => (

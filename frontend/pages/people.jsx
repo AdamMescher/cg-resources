@@ -15,11 +15,17 @@ import PersonModal from '../components/PersonModal';
 import Nav from '../components/Nav';
 import client from '../apollo-client';
 import formatPhoneNumber from '../utils/formatPhoneNumber';
+import formatDayMonth from '../utils/formatDayMonth';
 
 const ContactsPage = ({ sanity }) => {
   const modifiedTableData = sanity.people.map((person) => {
     const number = person.phone;
-    const newPerson = { ...person, phone: formatPhoneNumber(number) };
+    const birthday = formatDayMonth(person.birthday);
+    const newPerson = {
+      ...person,
+      phone: formatPhoneNumber(person.phone),
+      birthday,
+    };
     return newPerson;
   });
   const columnData = [

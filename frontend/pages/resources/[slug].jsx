@@ -14,8 +14,11 @@ const ResourceSlugPage = ({ resource }) => {
       <Nav />
       <Box px={50}>
         <Heading mt={25} textAlign={'center'}>
-          {`${resource.title}`}
+          {resource.title}
         </Heading>
+        {resource.authors.length ? (
+          <Text fontSize={18} align='center'>By {resource.authors.join(', ')}</Text>
+        ) : null}
         <Center mt={2}>
           {resource.tags
             ? resource.tags.map(({ label, value }) => (
@@ -23,12 +26,6 @@ const ResourceSlugPage = ({ resource }) => {
               ))
             : null}
         </Center>
-        <Text textAlign='center'>
-          Added on: {resource._createdAt.substr(0, 10)}
-        </Text>
-        <Text textAlign='center'>
-          Last updated: {resource._updatedAt.substr(0, 10)}
-        </Text>
         <Center mt={4}>
           <img
             style={{ borderRadius: '8px' }}
@@ -79,6 +76,7 @@ export async function getServerSideProps({ query }) {
         _updatedAt
         _createdAt
         title
+        authors
         slug {
           current
         }

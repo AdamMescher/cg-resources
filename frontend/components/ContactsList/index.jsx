@@ -12,6 +12,7 @@ import { MdCake } from 'react-icons/md';
 import personModal from '../PersonModal';
 import formatPhoneNumber from '../../utils/formatPhoneNumber';
 import urlFor from '../../utils/urlFor';
+import formatDayMonth from '../../utils/formatDayMonth';
 
 const ContactsList = ({ people }) => {
   return people.map((person) => (
@@ -46,7 +47,7 @@ const ContactsList = ({ people }) => {
       </HStack>
       <HStack mt={2} ml={10}>
         <Icon as={MdCake} />
-        <Text>{person.birthday}</Text>
+        <Text>{formatDayMonth(person.birthday)}</Text>
       </HStack>
     </Box>
   ));

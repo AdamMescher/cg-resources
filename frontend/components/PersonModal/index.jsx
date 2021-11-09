@@ -18,6 +18,7 @@ import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import { MdCake } from 'react-icons/md';
 import urlFor from '../../utils/urlFor';
 import formatPhoneNumber from '../../utils/formatPhoneNumber';
+import formatDayMonth from '../../utils/formatDayMonth';
 
 const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
   return (
@@ -55,7 +56,7 @@ const PersonModal = ({ isOpen, onOpen, onClose, person }) => {
           <HStack mt={3} px={'25%'}>
             <Icon as={MdCake} />
             <Text mt={3} textAlign='left'>
-              {person.birthday}
+              {formatDayMonth(person.birthday)}
             </Text>
           </HStack>
         </ModalBody>
