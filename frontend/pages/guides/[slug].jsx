@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { gql } from '@apollo/client';
+import { v4 as uuidv4 } from 'uuid';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import {
   Accordion,
   AccordionItem,
@@ -20,27 +23,22 @@ import {
 import Nav from '../../components/Nav';
 import PassageText from '../../components/PassageText';
 import SermonSeriesTag from '../../components/SermonSeriesTag';
-import { IoMdRadioButtonOn } from 'react-icons/io';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import { v4 as uuidv4 } from 'uuid';
 import client from '../../apollo-client';
-
-const headerColor = 'yellow.500';
-const textColor = 'gray.800';
-const bulletIconColor = 'gray.800';
-const headingMarginTop = '20px;';
+import { IoMdRadioButtonOn } from 'react-icons/io';
+import formatDayMonthYear from '../../utils/formateDayMonthYear';
 
 const GuideSlugPage = ({ esv, sanity }) => {
+  const headerColor = 'yellow.500';
+  const textColor = 'gray.800';
+  const bulletIconColor = 'gray.800';
+  const headingMarginTop = '20px;';
   return (
     <Box>
       <Nav />
       <Box px={5}>
-        <Heading
-          textAlign='center'
-          mt={
-            2
-          }>{`${sanity.guide.sermonDate}: ${sanity.guide.sermonTitle} | ${sanity.guide.passage}`}</Heading>
+        <Heading textAlign='center' mt={2}>{`${formatDayMonthYear(
+          sanity.guide.sermonDate
+        )}: ${sanity.guide.sermonTitle}`}</Heading>
         {sanity.guide.tags ? (
           <Center mt={2}>
             {sanity.guide.tags.map(({ label, value }) => (
@@ -142,14 +140,14 @@ const GuideSlugPage = ({ esv, sanity }) => {
             </h2>
             <AccordionPanel>
               <List>
-                {sanity.guide.mikeGuide.asset.url ? (
+                {sanity.guide?.cgGuide?.asset?.url ? (
                   <ListItem key={sanity.guide._id}>
                     <Link isExternal href={`${sanity.guide.cgGuide.asset.url}`}>
                       <Text color='#AA934F'>CG Guide</Text>
                     </Link>
                   </ListItem>
                 ) : null}
-                {sanity.guide.cgGuide.asset.url ? (
+                {sanity.guide?.mikeGuide?.asset?.url ? (
                   <ListItem key={sanity.guide._id}>
                     <Link
                       isExternal
