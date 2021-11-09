@@ -1,10 +1,16 @@
 import * as React from 'react';
 import { gql } from '@apollo/client';
 import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
   Box,
   Center,
   Heading,
   Link,
+  List,
   ListIcon,
   ListItem,
   OrderedList,
@@ -42,59 +48,123 @@ const GuideSlugPage = ({ esv, sanity }) => {
             ))}
           </Center>
         ) : null}
-        <Box>
-          <Heading>Passage</Heading>
-          <PassageText html={esv.passages[0]} />
-          <Heading pt={headingMarginTop} as='h3' size='lg'>
-            Sermon Notes
-          </Heading>
-          <ReactMarkdown
-            children={sanity.guide.notes}
-            remarkPlugins={[remarkGfm]}
-          />
-          <Heading pt={headingMarginTop} as='h3' size='lg'>
-            Questions
-          </Heading>
-          <OrderedList mt={2} spacing={3}>
-            {sanity.guide.questions.map((question) => (
-              <ListItem key={uuidv4()}>{question}</ListItem>
-            ))}
-          </OrderedList>
-          <Heading pt={headingMarginTop} as='h3' size='lg'>
-            Announcemnts
-          </Heading>
-          <UnorderedList spacing={4}>
-            {sanity.guide.announcements.map((announcement) => (
-              <ListItem
-                mt={2}
-                key={uuidv4()}
-                color={textColor}
-                style={{ listStyle: 'none' }}>
-                <ListIcon
-                  as={IoMdRadioButtonOn}
-                  key={announcement._id}
-                  fill={bulletIconColor}
-                />
-                {announcement}
-              </ListItem>
-            ))}
-          </UnorderedList>
-          <Heading pt={headingMarginTop} as='h3' size='lg' marginTop>
-            Message Link
-          </Heading>
-          <Text>
-            <Link href={sanity.guide.message} style={{ color: '#AA934F' }}>
-              {sanity.guide.sermonTitle}
-            </Link>
-          </Text>
-          <Heading>Files</Heading>
-          <Link isExternal href={`${sanity.guide.mikeGuide.asset.url}`}>
-            Mike's Guide
-          </Link>
-          <Link isExternal href={`${sanity.guide.cgGuide.asset.url}`}>
-            Prayer Guide
-          </Link>
-        </Box>
+        <Accordion mt={4} allowMultiple allowToggle>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                  <Heading>{`Passage - ${sanity.guide.passage}`}</Heading>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel>
+              <PassageText html={esv.passages[0]} />
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                  <Heading>Sermon Notes</Heading>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel>
+              <ReactMarkdown
+                children={sanity.guide.notes}
+                remarkPlugins={[remarkGfm]}
+              />
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                  <Heading>Questions</Heading>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel>
+              <OrderedList mt={2} spacing={3}>
+                {sanity.guide.questions.map((question) => (
+                  <ListItem key={uuidv4()}>{question}</ListItem>
+                ))}
+              </OrderedList>
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                  <Heading>Announcements</Heading>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel>
+              <UnorderedList spacing={4}>
+                {sanity.guide.announcements.map((announcement) => (
+                  <ListItem
+                    mt={2}
+                    key={uuidv4()}
+                    color={textColor}
+                    style={{ listStyle: 'none' }}>
+                    <ListIcon
+                      as={IoMdRadioButtonOn}
+                      key={announcement._id}
+                      fill={bulletIconColor}
+                    />
+                    {announcement}
+                  </ListItem>
+                ))}
+              </UnorderedList>
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <h2>
+              <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                  <Heading>Message Link</Heading>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel>
+              <Text>
+                <Link href={sanity.guide.message} style={{ color: '#AA934F' }}>
+                  {sanity.guide.sermonTitle}
+                </Link>
+              </Text>
+            </AccordionPanel>
+          </AccordionItem>
+          <AccordionItem isExpanded={true}>
+            <h2>
+              <AccordionButton>
+                <Box flex='1' textAlign='left'>
+                  <Heading>Files</Heading>
+                </Box>
+                <AccordionIcon />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel>
+              <List>
+                <ListItem>
+                  <Link isExternal href={`${sanity.guide.cgGuide.asset.url}`}>
+                    <Text color='#AA934F'>CG Guide</Text>
+                  </Link>
+                </ListItem>
+                <ListItem>
+                  <Link isExternal href={`${sanity.guide.mikeGuide.asset.url}`}>
+                    <Text color='#AA934F'>Mike's Guide</Text>
+                  </Link>
+                </ListItem>
+              </List>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </Box>
     </Box>
   );
