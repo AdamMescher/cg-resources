@@ -107,16 +107,7 @@ const GuideSlugPage = ({ esv, sanity }) => {
             <AccordionPanel>
               <UnorderedList spacing={4}>
                 {sanity.guide.announcements.map((announcement) => (
-                  <ListItem
-                    mt={2}
-                    key={uuidv4()}
-                    color={textColor}
-                    style={{ listStyle: 'none' }}>
-                    <ListIcon
-                      as={IoMdRadioButtonOn}
-                      key={announcement._id}
-                      fill={bulletIconColor}
-                    />
+                  <ListItem mt={2} key={uuidv4()} color={textColor}>
                     {announcement}
                   </ListItem>
                 ))}
