@@ -142,16 +142,22 @@ const GuideSlugPage = ({ esv, sanity }) => {
             </h2>
             <AccordionPanel>
               <List>
-                <ListItem>
-                  <Link isExternal href={`${sanity.guide.cgGuide.asset.url}`}>
-                    <Text color='#AA934F'>CG Guide</Text>
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link isExternal href={`${sanity.guide.mikeGuide.asset.url}`}>
-                    <Text color='#AA934F'>Mike's Guide</Text>
-                  </Link>
-                </ListItem>
+                {sanity.guide.mikeGuide.asset.url ? (
+                  <ListItem key={sanity.guide._id}>
+                    <Link isExternal href={`${sanity.guide.cgGuide.asset.url}`}>
+                      <Text color='#AA934F'>CG Guide</Text>
+                    </Link>
+                  </ListItem>
+                ) : null}
+                {sanity.guide.cgGuide.asset.url ? (
+                  <ListItem key={sanity.guide._id}>
+                    <Link
+                      isExternal
+                      href={`${sanity.guide.mikeGuide.asset.url}`}>
+                      <Text color='#AA934F'>Mike's Guide</Text>
+                    </Link>
+                  </ListItem>
+                ) : null}
               </List>
             </AccordionPanel>
           </AccordionItem>
