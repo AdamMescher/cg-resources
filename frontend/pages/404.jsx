@@ -27,7 +27,6 @@ const Custom404 = () => {
     md: 'md',
     sm: 'sm',
   });
-  console.log({ breakpoint });
   return (
     <Box height='100vh'>
       <Nav />

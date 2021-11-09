@@ -6,7 +6,6 @@ import {
   Heading,
   Text,
   useDisclosure,
-  useBreakpointValue,
   useMediaQuery,
 } from '@chakra-ui/react';
 import { useTable } from 'react-table';
@@ -47,13 +46,6 @@ const ContactsPage = ({ sanity }) => {
   ];
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [person, setPerson] = React.useState(null);
-  const breakpoint = useBreakpointValue({
-    xl: 'xl',
-    lg: 'lg',
-    md: 'md',
-    sm: 'sm',
-  });
-  console.log({ breakpoint });
   const columns = React.useMemo(() => columnData);
   const tableData = React.useMemo(() => modifiedTableData);
   const [isSmallerThan1280] = useMediaQuery('(max-width: 30em)');
