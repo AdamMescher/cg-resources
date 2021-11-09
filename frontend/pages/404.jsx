@@ -7,17 +7,27 @@ import {
   LinkBox,
   LinkOverlay,
   Text,
+  useBreakpointValue,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import Nav from '../components/Nav';
 import PageNotFoundButton from '../components/PageNotFoundButton';
 
 const Custom404 = () => {
+  const [isSmallerThan30Em] = useMediaQuery('(max-width: 30em)');
   const links = [
     { text: 'Home', route: '/' },
     { text: 'Resources', route: '/resources' },
     { text: 'Guides', route: '/guides' },
     { text: 'People', route: '/people' },
   ];
+  const breakpoint = useBreakpointValue({
+    xl: 'xl',
+    lg: 'lg',
+    md: 'md',
+    sm: 'sm',
+  });
+  console.log({ breakpoint });
   return (
     <Box height='100vh'>
       <Nav />
@@ -45,7 +55,7 @@ const Custom404 = () => {
         <Flex
           justify='center'
           align='center'
-          direction={{ xl: 'row', lg: 'row', md: 'column', sm: 'column' }}
+          direction={isSmallerThan30Em ? 'column' : 'row'}
           mt={6}>
           {links.map(({ text, route }) => (
             <PageNotFoundButton text={text} route={route} />

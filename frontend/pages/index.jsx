@@ -20,7 +20,7 @@ const IndexPage = ({ sanity }) => {
   return (
     <Box>
       <Nav />
-      <Box mx={50}>
+      <Box mx={3}>
         <Heading as='h2' size='2xl' textAlign='center' pt={5}>
           Community Group Guides and Resources
         </Heading>
@@ -36,7 +36,7 @@ const IndexPage = ({ sanity }) => {
                       <SermonSeriesTag key={guide._id} tag={label} />
                     ))
                   : null}
-                <Link ml={2} href={`/guides/${guide.slug.current}`}>
+                <Link ml={1} href={`/guides/${guide.slug.current}`}>
                   <Text
                     noOfLines={
                       1

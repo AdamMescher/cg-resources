@@ -2,17 +2,11 @@ import {
   Tag,
   TagLabel,
   TagRightIcon,
-  useBreakpointValue,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import { FaChurch } from 'react-icons/fa';
 
 const SermonSeriesTag = ({ tag }) => {
-  const breakpoint = useBreakpointValue({
-    xl: 'xl',
-    lg: 'lg',
-    md: 'md',
-    sm: 'sm',
-  });
   let backgroundColor;
   let color;
   let shortTag;
@@ -22,7 +16,8 @@ const SermonSeriesTag = ({ tag }) => {
     color = 'white';
     shortTag = 'Creed';
   }
-  return breakpoint === 'sm' ? (
+  const [isSmallerThan1280] = useMediaQuery('(max-width: 30em)');
+  return isSmallerThan1280 ? (
     <Tag color={color} backgroundColor={backgroundColor}>
       <TagLabel color={color}>{shortTag}</TagLabel>
       <TagRightIcon as={FaChurch} />

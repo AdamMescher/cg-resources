@@ -7,6 +7,7 @@ import {
   Text,
   useDisclosure,
   useBreakpointValue,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import { useTable } from 'react-table';
 import ContactsTable from '../components/ContactsTable';
@@ -52,8 +53,10 @@ const ContactsPage = ({ sanity }) => {
     md: 'md',
     sm: 'sm',
   });
+  console.log({ breakpoint });
   const columns = React.useMemo(() => columnData);
   const tableData = React.useMemo(() => modifiedTableData);
+  const [isSmallerThan1280] = useMediaQuery('(max-width: 30em)');
   return (
     <Box>
       <Nav />
@@ -64,7 +67,7 @@ const ContactsPage = ({ sanity }) => {
         <Heading mb={4} textAlign={'center'}>
           Group Members
         </Heading>
-        {breakpoint === 'xl' || breakpoint === 'lg' || breakpoint === 'md' ? (
+        {!isSmallerThan1280 ? (
           <ContactsTable
             data={tableData}
             columns={columns}
