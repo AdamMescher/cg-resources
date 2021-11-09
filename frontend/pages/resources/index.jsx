@@ -23,15 +23,20 @@ const ResourcesPage = ({ resources }) => {
           <Heading>Resources</Heading>
         </Center>
         <Center>
-          <SimpleGrid pt={5} columns={2} spacing={10}>
+          <SimpleGrid mt={5} columns={4} spacing={5}>
             {resources.map((resource) => (
               <LinkBox
-                width={200}
-                height={200}
-                borderWidth={2}
-                borderColor={'gray.300'}
+                py={3}
+                px={2}
+                width={300}
+                borderWidth={1}
+                borderColor={'gray.100'}
                 borderRadius={10}
-                background='gray.100'
+                _hover={{
+                  borderColor: 'gray.200',
+                  cursor: 'pointer',
+                  boxShadow: 'lg',
+                }}
                 key={resource._id}
                 href={`/resources/${resource.slug.current}`}>
                 <Flex
@@ -42,18 +47,22 @@ const ResourcesPage = ({ resources }) => {
                   <Center>
                     <img
                       style={{ borderRadius: 10 }}
-                      src={urlFor(resource.image).height(75).url()}
+                      src={urlFor(resource.image).height(100).url()}
                     />
                   </Center>
                   <LinkOverlay href={`/resources/${resource.slug.current}`}>
                     <Text
-                      px={3}
                       mt={3}
                       noOfLines={2}
                       fontWeight='bold'
                       textAlign='center'>
                       {resource.title}
                     </Text>
+                    {resource.authors.length ? (
+                      <Text align='center'>
+                        By {resource.authors.join(', ')}
+                      </Text>
+                    ) : null}
                   </LinkOverlay>
                   <Center px={3} mt={3} pb={2}>
                     {resource.tags
@@ -79,6 +88,7 @@ export async function getServerSideProps() {
         allResource {
           _id
           title
+          authors
           slug {
             current
           }
