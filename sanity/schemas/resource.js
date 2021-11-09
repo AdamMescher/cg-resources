@@ -28,6 +28,12 @@ export default {
       type: 'tags',
     },
     {
+      title: 'Author(s)',
+      name: 'authors',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
       title: 'Reource Notes',
       name: 'notes',
       type: 'markdown',
