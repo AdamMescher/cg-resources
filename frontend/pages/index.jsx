@@ -15,16 +15,7 @@ import Nav from '../components/Nav';
 import ResourceBadge from '../components/ResourceBadge';
 import SermonSeriesTag from '../components/SermonSeriesTag';
 import client from '../apollo-client';
-
-function sortByDate(a, b) {
-  if (a.sermonDate < b.sermonDate) {
-    return 1;
-  }
-  if (a.sermonDate > b.sermonDate) {
-    return -1;
-  }
-  return 0;
-}
+import sortByDate from '../utils/sortByDate';
 
 const IndexPage = ({ sanity }) => {
   return (
@@ -38,7 +29,7 @@ const IndexPage = ({ sanity }) => {
           Guides
         </Heading>
         <List>
-          {sanity.guides.sort(sortByDate).map((guide) => (
+ƒ          {sanity.guides.map((guide) => (
             <ListItem mt={2} key={guide._id}>
               <HStack>
                 {guide.tags
