@@ -28,30 +28,38 @@ const IndexPage = ({ sanity }) => {
         <Heading as='h3' size='xl' mt={6}>
           Guides
         </Heading>
-        <List>
-ƒ          {sanity.guides.map((guide) => (
-            <ListItem mt={2} key={guide._id}>
-              <HStack>
-                {guide.tags
-                  ? guide.tags
-                      .sort(sortByDate)
-                      .map(({ value, label }) => (
-                        <SermonSeriesTag key={guide._id} tag={label} />
-                      ))
-                  : null}
-                <Link ml={1} href={`/guides/${guide.slug.current}`}>
-                  <Text
-                    noOfLines={
-                      1
-                    }>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Text>
-                </Link>
-              </HStack>
-            </ListItem>
-          ))}
-        </List>
+        {sanity.guides ? (
+          <List>
+            {sanity.guides
+              .slice(0, 6)
+              .sort(sortByDate)
+              .map((guide) => (
+                <ListItem mt={2} key={guide._id}>
+                  <HStack>
+                    {guide.tags
+                      ? guide.tags.map(({ value, label }) => (
+                          <SermonSeriesTag key={guide._id} tag={label} />
+                        ))
+                      : null}
+                    <Link ml={1} href={`/guides/${guide.slug.current}`}>
+                      <Text
+                        noOfLines={
+                          1
+                        }>{`${guide.sermonDate}: ${guide.sermonTitle}`}</Text>
+                    </Link>
+                  </HStack>
+                </ListItem>
+              ))}
+          </List>
+        ) : null}
+        <Link href='/guides'>
+          <Text mt={3} color='#AA934F'>
+            See more guides...
+          </Text>
+        </Link>
         <Heading mt={6}>Resources</Heading>
         <List>
-          {sanity.resources.map((resource) => (
+          {sanity.resources.slice(0, 7).map((resource) => (
             <ListItem key={resource._id} mt={1}>
               <HStack>
                 {resource.tags
@@ -66,6 +74,11 @@ const IndexPage = ({ sanity }) => {
             </ListItem>
           ))}
         </List>
+        <Link href='/resources'>
+          <Text mt={3} color='#AA934F'>
+            See more resources...
+          </Text>
+        </Link>
       </Box>
     </Box>
   );
@@ -74,11 +87,6 @@ export async function getServerSideProps() {
   const { data } = await client.query({
     query: gql`
       query SANITY {
-        allPerson {
-          _id
-          firstName
-          lastName
-        }
         allGuide {
           _id
           sermonTitle
@@ -93,10 +101,6 @@ export async function getServerSideProps() {
             current
           }
         }
-        allLocation {
-          _id
-          name
-        }
         allResource {
           _id
           title
@@ -109,11 +113,6 @@ export async function getServerSideProps() {
             label
             value
           }
-          image {
-            asset {
-              url
-            }
-          }
         }
       }
     `,
@@ -121,8 +120,6 @@ export async function getServerSideProps() {
   return {
     props: {
       sanity: {
-        people: data.allPerson,
-        locations: data.allLocation,
         guides: data.allGuide,
         resources: data.allResource,
       },

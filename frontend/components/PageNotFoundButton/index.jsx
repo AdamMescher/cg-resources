@@ -1,9 +1,11 @@
 import { Heading, LinkBox, LinkOverlay, useMediaQuery } from '@chakra-ui/react';
+import { v4 as uuidv4 } from 'uuid';
 
 const PageNotFoundButton = ({ text, route }) => {
   const [isSmallerThan30Em] = useMediaQuery('(max-width: 30em)');
   return (
     <LinkBox
+      key={uuidv4()}
       _hover={{ backgroundColor: '#67592F' }}
       as='article'
       px={4}
